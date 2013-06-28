@@ -50,6 +50,9 @@ let g:snippetsEmu_key = "<C-j>"
 
 set incsearch
 set hlsearch
+set incsearch
+set nowrapscan
+set ignorecase
 
 " Копи/паст по Ctrl+C/Ctrl+V
 vmap <C-C> "+yi
