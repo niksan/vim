@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =4
 let g:netrw_dirhist_1='/home/user/.vim/syntax'
 let g:netrw_dirhist_2='/usr/share/vim/vim73/indent'
 let g:netrw_dirhist_3='/etc/sysconfig/network-scripts'
+let g:netrw_dirhist_4='/etc/X11/Xsession.d'

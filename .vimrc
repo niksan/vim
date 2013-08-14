@@ -1,4 +1,4 @@
-set nocompatible
+au VimEnter * NERDTree
 
 "Включаем распознавание типов файлов и типо-специфичные плагины:
 filetype on
