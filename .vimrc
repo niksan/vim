@@ -22,6 +22,8 @@ autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
+set statusline=%=%(%p%%%)
+
 "Авто комплит по табу
 "function InsertTabWrapper()
 "let col = col('.') - 1
