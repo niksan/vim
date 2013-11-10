@@ -3,6 +3,7 @@ au VimEnter * NERDTree
 "Включаем распознавание типов файлов и типо-специфичные плагины:
 filetype on
 filetype plugin on
+let NERDTreeShowHidden=1
 
 "Настройки табов для Python, согласно рекоммендациям
 set tabstop=2
@@ -22,7 +23,7 @@ autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
-set statusline=%=%(%p%%%)
+"set statusline=%=%(%p%%%)
 
 "Авто комплит по табу
 "function InsertTabWrapper()
