@@ -1,7 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/home/user/.vim/syntax'
 let g:netrw_dirhist_2='/usr/share/vim/vim73/indent'
 let g:netrw_dirhist_3='/etc/sysconfig/network-scripts'
 let g:netrw_dirhist_4='/etc/X11/Xsession.d'
 let g:netrw_dirhist_5='/etc/resolvconf'
+let g:netrw_dirhist_6='/home/niksan/htdocs/kkbackoffice/lib/extensions/paperclip'
+let g:netrw_dirhist_7='/home/niksan/htdocs/produssering'
+let g:netrw_dirhist_8='/home/niksan/vms/niksan_vm/vars'
