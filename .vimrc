@@ -1,9 +1,21 @@
+set nocp
+if exists('$DOTFILES') 
+  source $DOTFILES/vim/autoload/pathogen.vim
+	source $DOTFILES/vim/vimrc
+endif
+
+call pathogen#infect()
+
 au VimEnter * NERDTree
 
 "Включаем распознавание типов файлов и типо-специфичные плагины:
 filetype on
 filetype plugin on
 let NERDTreeShowHidden=1
+
+
+"autocmd FileType slim setlocal foldmethod=indent
+"autocmd BufNewFile,BufRead *.slim set filetype=slim
 
 "Настройки табов для Python, согласно рекоммендациям
 set tabstop=2
@@ -61,8 +73,10 @@ set ignorecase
 vmap <C-C> "+yi
 imap <C-V> "+gPi
 
+
 colorscheme wombat256 "Цветовая схема
 syntax on "Включить подсветку синтаксиса
+filetype plugin indent on
 set nu "Включаем нумерацию строк
 set mousehide "Спрятать курсор мыши когда набираем текст
 set mouse=a "Включить поддержку мыши
