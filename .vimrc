@@ -18,6 +18,9 @@ Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+" Линтинг
+Plug 'dense-analysis/ale'
+
 " Цветовая схема
 Plug 'morhetz/gruvbox'
 
@@ -97,6 +100,23 @@ let g:go_highlight_build_constraints = 1
 let g:jedi#popup_on_dot = 1
 let g:jedi#show_call_signatures = 1
 autocmd BufWritePre *.py %s/\s\+$//e
+
+" === ALE (линтинг) ===
+let g:ale_linters = {
+\   'go': ['gopls', 'govet'],
+\   'ruby': ['rubocop'],
+\   'python': ['pylint', 'pyflakes'],
+\}
+let g:ale_fixers = {
+\   'go': ['goimports'],
+\   'ruby': ['rubocop'],
+\   'python': ['black', 'isort'],
+\}
+let g:ale_fix_on_save = 1
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+nmap ]e <Plug>(ale_next_wrap)
+nmap [e <Plug>(ale_previous_wrap)
 
 " === Tab-автодополнение ===
 function! TabWrapper()
