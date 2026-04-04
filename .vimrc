@@ -1,154 +1,111 @@
-set nocp
-if exists('$DOTFILES') 
-  source $DOTFILES/vim/autoload/pathogen.vim
-	source $DOTFILES/vim/vimrc
-endif
+" === Плагины (vim-plug) ===
+call plug#begin('~/.vim/plugged')
 
-call pathogen#infect()
+" Go
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
-au VimEnter * NERDTree
+" Ruby / Rails
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rails'
 
-"Включаем распознавание типов файлов и типо-специфичные плагины:
-filetype on
-filetype plugin on
-let NERDTreeShowHidden=1
+" Python
+Plug 'davidhalter/jedi-vim'
 
+" Файловый менеджер
+Plug 'preservim/nerdtree'
 
-"autocmd FileType slim setlocal foldmethod=indent
-"autocmd BufNewFile,BufRead *.slim set filetype=slim
+" Поиск файлов
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
-"Настройки табов для Python, согласно рекоммендациям
+" Цветовая схема
+Plug 'morhetz/gruvbox'
+
+call plug#end()
+
+" === Общие настройки ===
+set nocompatible
+filetype plugin indent on
+syntax on
+
+" Цвета
+set t_Co=256
+set background=dark
+colorscheme gruvbox
+
+" Отступы
 set tabstop=2
 set shiftwidth=2
+set softtabstop=2
+set expandtab
 set smarttab
-set expandtab "Ставим табы пробелами
-set softtabstop=4 "4 пробела в табе
-"Подсвечиваем все что можно подсвечивать
-let python_highlight_all = 1
-"Включаем 256 цветов в терминале, мы ведь работаем из иксов?
-"Нужно во многих терминалах, например в gnome-terminal
-set t_Co=256
-set nonumber
-"Настройка omnicomletion для Python (а так же для js, html и css)
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+set autoindent
 
-"set statusline=%=%(%p%%%)
+" Кодировка
+set encoding=utf-8
+set termencoding=utf-8
+set fileencodings=utf-8,cp1251
 
-"Авто комплит по табу
-"function InsertTabWrapper()
-"let col = col('.') - 1
-"if !col || getline('.')[col - 1] !~ '\k'
-"return "\"
-"else
-"return "\<c-p>"
-"endif
-"endfunction
-"imap <c-r>=InsertTabWrapper()
-"Показываем все полезные опции автокомплита сразу
-"set complete=""
-"set complete+=.
-"set complete+=k
-"set complete+=b
-"set complete+=t
-
-"Перед сохранением вырезаем пробелы на концах (только в .py файлах)
-autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
-"В .py файлах включаем умные отступы после ключевых слов
-autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-
-"nippletsEmu(см. дальше в топике) по ctrl-j
-"вместо tab по умолчанию (на табе автокомплит)
-let g:snippetsEmu_key = "<C-j>"
-
+" Поиск
 set incsearch
 set hlsearch
-set incsearch
-set nowrapscan
 set ignorecase
+set smartcase
 
-" Копи/паст по Ctrl+C/Ctrl+V
+" Интерфейс
+set number
+set mouse=a
+set mousehide
+set novisualbell
+set t_vb=
+set backspace=indent,eol,start whichwrap+=<,>,[,]
+set wrap
+set linebreak
+set foldcolumn=1
+set showtabline=2
+set laststatus=2
+
+" Без swap/backup
+set nobackup
+set noswapfile
+
+" Копирование в системный буфер
 vmap <C-C> "+yi
 imap <C-V> "+gPi
 
+" === NERDTree ===
+let NERDTreeShowHidden = 1
+autocmd VimEnter * NERDTree
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') | quit | endif
 
-colorscheme wombat256 "Цветовая схема
-syntax on "Включить подсветку синтаксиса
-filetype plugin indent on
-set nu "Включаем нумерацию строк
-set mousehide "Спрятать курсор мыши когда набираем текст
-set mouse=a "Включить поддержку мыши
-set termencoding=utf-8 "Кодировка терминала
-set novisualbell "Не мигать
-set t_vb= "Не пищать! (Опции 'не портить текст', к сожалению, нету)
-"Удобное поведение backspace
-set backspace=indent,eol,start whichwrap+=<,>,[,]
-"Вырубаем черточки на табах
-set showtabline=0
-"Колоночка, чтобы показывать плюсики для скрытия блоков кода:
-set foldcolumn=1
+" === FZF ===
+nnoremap <C-p> :Files<CR>
+nnoremap <C-f> :Rg<CR>
 
-"Переносим на другую строчку, разрываем строки
-set wrap
-set linebreak
+" === Go (vim-go) ===
+let g:go_fmt_command = "goimports"
+let g:go_def_mode = 'gopls'
+let g:go_info_mode = 'gopls'
+let g:go_referrers_mode = 'gopls'
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 
-"Вырубаем .swp и ~ (резервные) файлы
-set nobackup
-set noswapfile
-set encoding=utf-8 " Кодировка файлов по умолчанию
-set fileencodings=utf8,cp1251 " Возможные кодировки файлов, если файл не в unicode кодировке,
-" то будет использоваться cp1251d
+" === Python (jedi-vim) ===
+let g:jedi#popup_on_dot = 1
+let g:jedi#show_call_signatures = 1
+autocmd BufWritePre *.py %s/\s\+$//e
 
-"
-nnoremap <C-H> :Hexmode<CR>
-inoremap <C-H> <Esc>:Hexmode<CR>
-vnoremap <C-H> :<C-U>Hexmode<CR>
-
-
-set paste
-
-
-"show tabline every time
-set showtabline=2
-
-
-"Автоотступ
-set autoindent
-
-
-" Tab autocompletion 
-function InsertTabWrapper() 
-let col = col('.') - 1 
-if !col || getline('.')[col - 1] !~ '\k' 
-    return "\<tab>" 
-else 
-    return "\<c-p>" 
-endif 
-endfunction 
-imap <tab> <c-r>=InsertTabWrapper()<cr> 
-set complete="" 
-set complete+=. 
-set complete+=k 
-set complete+=b 
-set complete+=t 
-set completeopt-=preview 
-set completeopt+=longest
-
-" Make the tab key useful {{{
-function TabWrapper()
-  if strpart(getline('.'), 0, col('.')-1) =~ '^\s*$'
-      return "\<Tab>"
-        elseif exists('&omnifunc') && &omnifunc != ''
-            return "\<C-X>\<C-N>"
-    else
-      return "\<C-N>"
-    endif
+" === Tab-автодополнение ===
+function! TabWrapper()
+  if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
+    return "\<Tab>"
+  elseif exists('&omnifunc') && &omnifunc != ''
+    return "\<C-X>\<C-O>"
+  else
+    return "\<C-N>"
+  endif
 endfunction
 imap <Tab> <C-R>=TabWrapper()<CR>
-imap <C-cr> <C-x><C-o><C-p>
-
-"set background=dark
-
-filetype plugin indent on
