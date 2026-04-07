@@ -2,10 +2,10 @@
 
 ## Установка
 
-1. Клонировать репозиторий с submodules:
+1. Клонировать репозиторий:
 
 ```bash
-git clone --recurse-submodules git@github.com:niksan/vim.git ~/.vim
+git clone git@github.com:niksan/vim.git ~/.vim
 ```
 
 2. Создать симлинк на `.vimrc`:
@@ -18,12 +18,6 @@ ln -s ~/.vim/.vimrc ~/.vimrc
 
 ```bash
 vim +GoInstallBinaries +qall
-```
-
-## Обновление плагинов
-
-```bash
-git submodule update --remote --merge
 ```
 
 ## Плагины
