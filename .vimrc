@@ -1,31 +1,3 @@
-" === Плагины (vim-plug) ===
-call plug#begin('~/.vim/plugged')
-
-" Go
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-
-" Ruby / Rails
-Plug 'vim-ruby/vim-ruby'
-Plug 'tpope/vim-rails'
-
-" Python
-Plug 'davidhalter/jedi-vim'
-
-" Файловый менеджер
-Plug 'preservim/nerdtree'
-
-" Поиск файлов
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-" Линтинг
-Plug 'dense-analysis/ale'
-
-" Цветовая схема
-Plug 'morhetz/gruvbox'
-
-call plug#end()
-
 " === Общие настройки ===
 set nocompatible
 filetype plugin indent on
@@ -86,6 +58,7 @@ nnoremap <C-p> :Files<CR>
 nnoremap <C-f> :Rg<CR>
 
 " === Go (vim-go) ===
+let g:go_version_warning = 0
 let g:go_fmt_command = "goimports"
 let g:go_def_mode = 'gopls'
 let g:go_info_mode = 'gopls'
