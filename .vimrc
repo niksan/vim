@@ -59,7 +59,7 @@ nnoremap <C-f> :Rg<CR>
 
 " === Go (vim-go) ===
 let g:go_version_warning = 0
-let g:go_fmt_command = "goimports"
+let g:go_fmt_command = "gofmt"  " не goimports: импорты при сохранении не трогать (ручная чистка — :GoImports)
 let g:go_def_mode = 'gopls'
 let g:go_info_mode = 'gopls'
 let g:go_referrers_mode = 'gopls'
@@ -81,7 +81,6 @@ let g:ale_linters = {
 \   'python': ['pylint', 'pyflakes'],
 \}
 let g:ale_fixers = {
-\   'go': ['goimports'],
 \   'ruby': ['rubocop'],
 \   'python': ['black', 'isort'],
 \}
