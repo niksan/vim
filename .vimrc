@@ -60,6 +60,7 @@ nnoremap <C-f> :Rg<CR>
 " === Go (vim-go) ===
 let g:go_version_warning = 0
 let g:go_fmt_command = "gofmt"  " не goimports: импорты при сохранении не трогать (ручная чистка — :GoImports)
+let g:go_imports_autosave = 0   " vim-go по умолчанию сам гоняет goimports при :w — выключаем
 let g:go_def_mode = 'gopls'
 let g:go_info_mode = 'gopls'
 let g:go_referrers_mode = 'gopls'
