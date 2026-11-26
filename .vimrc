@@ -51,7 +51,6 @@ imap <C-V> "+gPi
 " === NERDTree ===
 let NERDTreeShowHidden = 1
 autocmd VimEnter * NERDTree
-autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') | quit | endif
 
 " === FZF ===
 nnoremap <C-p> :Files<CR>
